@@ -1,0 +1,56 @@
+﻿@model IEnumerable<hotel.Models.Room>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+@using (Html.BeginForm("Searchroom", "Room", FormMethod.Post))
+{
+    <span>رقم الغرفه</span> @Html.TextBox("num")
+    <input type="submit" value="Search" />
+    <br />
+}
+<br />
+<p>
+    @Html.ActionLink("اضافة غرفه", "addroom")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            رقم الغرفة
+        </th>
+        <th>
+            نوعها
+        </th>
+        <th>
+            السعر
+        </th>
+        <th>
+            المستوى
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.room_num)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.rate)
+        </td>
+        <td>
+            @Html.ActionLink("تعديل", "Editroom", new {  id=item.room_num  }) |
+            @Html.ActionLink("حذف", "Deleteroom", new { id = item.room_num })
+        </td>
+    </tr>
+}
+
+</table>

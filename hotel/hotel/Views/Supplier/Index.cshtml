@@ -1,0 +1,61 @@
+﻿@model IEnumerable<hotel.Models.Supplier>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>الموردين</h2>
+@using (Html.BeginForm("Searchsup", "Supplier", FormMethod.Post))
+{
+    <span>اسم المورد:</span> @Html.TextBox("supName")
+    <input type="submit" value="Search" />
+    <br />
+}
+<p>
+    @Html.ActionLink("اضافه مورد", "Add")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            الاسم
+        </th>
+        <th>
+            التليفون
+        </th>
+        <th>
+            نوع الخدمه المقدمه
+        </th>
+        <th>
+            تاريخ التسليم
+        </th>
+        <th>
+            اسم المندوب
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.sup_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sup_phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.type_of_service)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.date_of_recive)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.name_of_mandob)
+        </td>
+        <td>
+            @Html.ActionLink("تعديل", "Editsup", new { id=item.id }) |
+            @Html.ActionLink("حذف", "Deletesup", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

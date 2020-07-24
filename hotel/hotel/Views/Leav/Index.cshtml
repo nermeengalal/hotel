@@ -1,0 +1,61 @@
+﻿@model IEnumerable<hotel.Models.AttendanceAndLeave>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Leav</h2>
+@using (Html.BeginForm("Index", "Leav", FormMethod.Get))
+{
+    @Html.AntiForgeryToken()
+
+
+
+    List<SelectListItem> data = ViewBag.CategoryList;
+
+
+    @Html.DropDownList("id", (SelectList)ViewBag.CompanyId, "Select Name", new { @class = "form-control" })
+        <input type="submit" value="Search" class="btn btn-primary" />
+  }
+@if (Model!=null&&Model.Any())
+{
+
+<table class="table">
+
+            <tr>
+                <th>
+                    الرقم
+                </th>
+                <th>
+                    حضور
+                </th>
+                <th>
+                    انصراف
+                </th>
+                <th>
+                    خصم
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.emp_id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.com_in)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.leave_in)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.discount)
+                    </td>
+
+                </tr>
+            }
+
+        </table>
+}

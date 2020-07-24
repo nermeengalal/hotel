@@ -1,0 +1,56 @@
+﻿@model IEnumerable<hotel.Models.Billing>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>الدفع</h2>
+<p>
+    @Html.ActionLink("اضافه", "addcustpay")
+</p>
+@using (Html.BeginForm("Index", "Payment", FormMethod.Get))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.DropDownList("id", (SelectList)ViewBag.CompanyId, "Select Name", new { @class = "form-control" })
+    <input type="submit" value="Search" class="btn btn-primary" />
+}
+@if (Model != null && Model.Any())
+{
+
+<table class="table">
+    <tr>
+        
+        <th>
+            تاريخ الدفع
+        </th>
+        <th>
+            بطاقه الائتمان
+        </th>
+        <th>
+            اجمالى المبلغ
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.date_of_bill)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.credit_no)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.total)
+        </td>
+        <td>
+            
+            @Html.ActionLink("حذف", "Delete", new { id = item.id })
+        </td>
+    </tr>
+}
+
+</table>
+}

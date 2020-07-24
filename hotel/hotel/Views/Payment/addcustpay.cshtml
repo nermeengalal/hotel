@@ -1,0 +1,70 @@
+﻿@model  hotel.Models.Billing
+
+@{
+    ViewBag.Title = "addcustpay";
+}
+
+<h2>اضافه</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+      
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @{
+            List<SelectListItem> data = ViewBag.customerlist;
+        }
+        <div class="form-group">
+            @Html.Label("اسم الزبون")
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.cus_id, data, "--Select--",  new { @class = "form-control"  })
+                @Html.ValidationMessageFor(model => model.cus_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            
+            <div class="col-md-10">
+                @Html.Label("تاريخ الدفع")
+                @Html.EditorFor(model => model.date_of_bill, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.date_of_bill, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            
+            <div class="col-md-10">
+                @Html.Label("بطاقه الائتمان")
+                @Html.EditorFor(model => model.credit_no, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.credit_no, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            
+            <div class="col-md-10">
+                @Html.Label("المبلغ ")
+                @Html.EditorFor(model => model.total, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.total, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="حفظ" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

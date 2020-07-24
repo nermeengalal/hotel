@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @*@Styles.Render("~/Content/css")*@
+    @*@Scripts.Render("~/bundles/modernizr")*@
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Hotel</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">الرئيسية <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="~/Room/Index">الغرف</a></li>
+                        <li><a href="~/Customer/Index">النزلاء</a></li>
+                        <li><a href="#">انشاء نسخة احتياطية</a></li>
+                        <li><a href="#">استعاد النسخة احتياطية</a></li>
+                    </ul>
+                </li>
+                
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">المواظفين <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="~/Employees/Index">المواظفين</a></li>
+                        <li><a href="~/Employees/allattendanceandleave">الحضور</a></li>
+                        <li><a href="~/Leav/Index">عدد الساعات</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">المحاسبه <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="~/Supplier/Reservation">الحجوزات</a></li>
+                        <li><a href="~/Payment/Index">الدفع</a></li>
+                        <li><a href="~/Supplier/Index">الموردين</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">التقارير <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="~/Supplier/suppreport">المورد</a></li>
+                        <li><a href="#">المواظفين</a></li>
+                        <li><a href="#">الحجوزات</a></li>
+                    </ul>
+                </li>
+                @Html.Partial("_LoginPartial")
+            </ul>
+        </div>
+    </nav>
+
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            </footer>
+        </div>
+
+        @*@Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")*@
+        @RenderSection("scripts", required: false)
+</body>
+</html>

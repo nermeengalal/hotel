@@ -1,0 +1,87 @@
+﻿@model IEnumerable<hotel.Models.viewmodel.ReservationMV>
+
+@{
+    ViewBag.Title = "Reservation";
+}
+
+<h2>Reservation</h2>
+
+@using (Html.BeginForm("Searchrese", "Supplier", FormMethod.Post))
+{
+    <span>اسم النزيل:</span> @Html.TextBox("supName")
+    <input type="submit" value="Search" />
+    <br />
+}
+<p>
+    @Html.ActionLink("اضافه", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+          اسم النزيل
+        </th>
+        <th>
+            رقم الغرفه
+        </th>
+        <th>
+            تاريخ الاستلام
+        </th>
+        <th>
+            تاريخ المغادره
+        </th>
+        <th>
+            التكلفه
+        </th>
+        <th>
+            عدد الايام
+        </th>
+        <th>
+            الخصم
+        </th>
+        <th>
+            الاجمالى
+        </th>
+        <th>
+            تاريخ الحجز
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.cus_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.room_num)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.checkin_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.checkout_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.days_num)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.discount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.total)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.date_of_reserve)
+        </td>
+        <td>
+            @Html.ActionLink("تعديل", "Editresevation", new { id=item.id }) |
+            
+            @Html.ActionLink("حذف", "Deleteresevation", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

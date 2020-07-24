@@ -1,0 +1,64 @@
+﻿@model IEnumerable<hotel.Models.Customer>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>الزبائن</h2>
+@using (Html.BeginForm("Searchcust", "Customer", FormMethod.Post))
+{
+    <span>Customer Name:</span> @Html.TextBox("custname")
+    <input type="submit" value="Search" />
+    <br />
+}
+<p>
+    @Html.ActionLink("اضافه زبون جديد", "addcust")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            اسم الزبون
+        </th>
+        <th>
+            رقم الموبايل
+        </th>
+        <th>
+            رقم الفاكس
+        </th>
+        <th>
+            الرقم القومى 
+        </th>
+        <th>
+            المدينة
+        </th>
+        
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.cus_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cus_phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cus_fax)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cus_ssn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cus_city)
+        </td>
+      
+        <td>
+            @Html.ActionLink("تعديل", "Editcust", new { id=item.id }) |
+          
+            @Html.ActionLink("حذف", "Deletecust", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

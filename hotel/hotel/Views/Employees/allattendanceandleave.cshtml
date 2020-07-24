@@ -1,0 +1,60 @@
+﻿@model IEnumerable<hotel.Models.viewmodel.attendandleaveviewmodel>
+
+@{
+    ViewBag.Title = "allattendanceandleave";
+}
+
+<h2>الحضور والانصراف</h2>
+<p>
+    @Html.ActionLink("انشاء حضور جديد", "addattendance")
+</p>
+@using (Html.BeginForm("SearchAct", "Employees", FormMethod.Post))
+{
+    <span>Customer Name:</span> @Html.TextBox("CustomerName")
+    <input type="submit" value="Search" />
+        <br />
+}
+<br />
+<table class="table">
+
+
+    <tr>
+        <th>
+            الاسم
+        </th>
+        <th>
+            حضور
+        </th>
+        <th>
+            انصراف
+        </th>
+        <th>
+            خصم
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Empname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.com_in)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.leave_in)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.discount)
+        </td>
+        <td>
+          
+            @Html.ActionLink("تعديل", "EditAttendance", new { id = item.id }) |
+            @Html.ActionLink("حذف", "DeleteAttendance", new { id = item.id })
+        </td>
+    </tr>
+}
+
+</table>
